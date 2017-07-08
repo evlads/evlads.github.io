@@ -1,0 +1,329 @@
+body {
+    background-image: url("img/background.jpg");
+    background-size: cover;
+    background-position: center;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: 300;
+    position: relative;
+    height: 100vh;
+    color: #212121;
+    min-width: 1200px;
+}
+
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+.cube__wrapper {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top:  5%;
+  left: 50%;
+  transform: translateX(-50%);
+  perspective: 1000px;
+  perspective-origin: 50% 100%;
+}
+
+#cube {
+  width: 100%;
+  height: 100%;
+  top: 100px;
+  position: absolute;
+  
+  transform-style: preserve-3d;
+  
+  transition: transform 6s;
+}
+
+#cube .cube__front {
+  transform: 
+    translateZ(100px);
+}
+
+#cube .cube__back {
+  transform: 
+    rotateX(-180deg)
+    translateZ(100px);
+}
+
+#cube .cube__right {
+  transform:
+    rotateY(90deg)
+    translateZ(100px);
+}
+
+#cube .cube__left {
+  transform:
+    rotateY(-90deg)
+    translateZ(100px);
+}
+
+#cube .cube__top {
+  transform:
+    rotateX(90deg)
+    translateZ(100px);
+}
+
+#cube .cube__bottom {
+  transform:
+    rotateX(-90deg)
+    translateZ(100px);
+}
+
+#cube:hover {
+  cursor: pointer;
+}
+
+#cube div {
+  background: rgba(33, 150, 243, 0.6);
+  display: block;
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border: 2px solid #1976d2;
+  
+  margin: 0 auto;  
+}
+
+.dot {
+  display: block;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: #ffffff;
+  border-radius: 15px;  
+}
+
+.cube__front .dot1 { top: 85px; left: 85px; }
+
+.cube__back .dot1 { top: 45px; left: 45px; }
+.cube__back .dot2 { top: 45px; left: 85px; }
+.cube__back .dot3 { top: 45px; left: 125px; }
+.cube__back .dot4 { top: 125px; left: 45px; }
+.cube__back .dot5 { top: 125px; left: 85px; }
+.cube__back .dot6 { top: 125px; left: 125px; }
+
+.cube__right .dot1 { top: 45px; left: 45px; }
+.cube__right .dot2 { top: 85px; left: 85px; }
+.cube__right .dot3 { top: 125px; left: 125px; }
+.cube__right .dot4 { top: 125px; left: 45px; }
+.cube__right .dot5 { top: 45px; left: 125px; }
+
+.cube__left .dot1 { top: 45px; left: 45px; }
+.cube__left .dot2 { top: 125px; left: 125px; }
+
+.cube__top .dot1 { top: 45px; left: 45px; }
+.cube__top .dot2 { top: 85px; left: 85px; }
+.cube__top .dot3 { top: 125px; left: 125px; }
+
+.cube__bottom .dot1 { top: 45px; left: 45px; }
+.cube__bottom .dot2 { top: 45px; left: 125px; }
+.cube__bottom .dot3 { top: 125px; left: 45px; }
+.cube__bottom .dot4 { top: 125px; left: 125px; }
+
+
+.board {
+	width: 1200px;
+	margin: 50px auto;
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.player {
+    width: 50%;
+    float: left;
+    height: 600px;
+    padding: 100px 100px 50px;
+}
+
+.player__name {
+    font-size: 40px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.player__name--active {
+	font-weight: 700;
+	color:  #EB4D4D; 
+}
+
+.player__score {
+    text-align: center;
+    font-size: 80px;
+    font-weight: 100;
+    color: #EB4D4D;
+    margin-bottom: 130px;
+}
+
+.player__current-box--active { box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.6); }
+
+.player__current-box {
+    background-color: rgba(33, 150, 243, 0.6);
+    color: #fff;
+    width: 40%;
+    margin: 0 auto;
+    padding: 12px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;  
+}
+
+.player__current-label {
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: #222;
+    font-weight: 700;
+}
+
+.player__current-score {
+    font-size: 30px;
+}
+
+.btn {
+    position: absolute;
+    width: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #212121;
+    background: none;
+    border: 3px solid #EB4D4D;
+    padding:  5px 10px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 20px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn[disabled]{
+	color: gray;
+	cursor: default;
+}
+
+.btn[disabled]:hover{
+	font-weight: 500;
+}
+
+button:hover { font-weight: 600; }
+
+button:focus {
+    outline: none;
+}
+
+.btn__new { top: 15px;}
+.btn__roll { top: 440px;}
+.btn__hold { top: 500px;}
+
+.bounce {
+  animation-name: bounce;
+  animation-duration: 1s;
+}
+
+/*   transform-origin: center bottom; 
+   animation-fill-mode: both; 
+   transition-property: font-weight; 
+     animation: bounce 1s ease-in-out; */
+
+.shake {
+  animation-name: shake;
+  animation-duration: 1s;
+}
+
+.winner {
+	animation-name: shake;
+	animation-duration: 1s;
+	animation-iteration-count: infinite
+}
+
+@keyframes bounce {
+  from, 20%, 53%, 80%, to {
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    transform: translate3d(0,0,0);
+  }
+
+  40%, 43% {
+    animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    transform: translate3d(0, -15px, 0);
+  }
+
+  70% {
+    animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    transform: translate3d(0, -8px, 0);
+  }
+
+  90% {
+    transform: translate3d(0,-4px,0);
+  }
+}
+
+@keyframes shake {
+  from, to {
+    transform: translate3d(0, 0, 0);
+  }
+
+  10%, 30%, 50%, 70%, 90% {
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  20%, 40%, 60%, 80% {
+    transform: translate3d(10px, 0, 0);
+  }
+}
+
+.modal {
+	position: absolute;
+	width: 1200px;
+	height: 600px;
+	background-color: rgba(21, 21, 21, 0.98);
+	color:  white;
+	padding: 70px;
+	font-size: 20px;
+}
+
+.modal h1 {
+	text-align: center;
+	margin-bottom: 50px;
+	font-size: 32px;
+}
+
+.modal p {
+	line-height: 35px;
+}
+
+.modal ul {
+	margin-left: 30px;
+}
+
+.modal button {
+	display: block;
+    width: 200px;
+    color: #fff;
+    background: none;
+    border: 3px solid #EB4D4D;
+    padding:  5px 10px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 20px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s, color 0.3s;
+	margin:  50px auto 0 auto;
+}
+.modal button:hover { font-weight: 600; }

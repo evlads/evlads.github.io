@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="style.css">
+<body>
+	<div class="board clearfix">
+		<div class="cube__wrapper">
+		  <div id="cube">
+		    <div class="cube__front">
+		      <span class="dot dot1"></span>
+		    </div>
+		    <div class="cube__back">
+		      <span class="dot dot1"></span>
+		      <span class="dot dot2"></span>
+		      <span class="dot dot3"></span>
+		      <span class="dot dot4"></span>
+		      <span class="dot dot5"></span>
+		      <span class="dot dot6"></span>
+		    </div>
+		    <div class="cube__right">
+		      <span class="dot dot1"></span>
+		      <span class="dot dot2"></span>  
+		      <span class="dot dot3"></span>
+		      <span class="dot dot4"></span>
+		      <span class="dot dot5"></span>
+		    </div>
+		    <div class="cube__left">
+		      <span class="dot dot1"></span>
+		      <span class="dot dot2"></span>  
+		    </div>
+		    <div class="cube__top">
+		      <span class="dot dot1"></span>
+		      <span class="dot dot2"></span>  
+		      <span class="dot dot3"></span>
+		      
+		    </div>
+		    <div class="cube__bottom">
+		      <span class="dot dot1"></span>
+		      <span class="dot dot2"></span>
+		      <span class="dot dot3"></span>
+		      <span class="dot dot4"></span>  
+		    </div>
+		  </div>
+		</div>
+		<div class="player">
+			<div class="player__name player__name--active">Гравець 1</div>
+			<div class="player__score" id="score0">0</div>
+			<div class="player__current-box player__current-box--active">
+				<div class="player__current-label">Поточний рахунок</div>
+				<div class="player__current-score" id="current0">0</div>
+			</div>
+		</div>
+		<div class="player">
+			<div class="player__name">Гравець 2</div>
+			<div class="player__score" id="score1">0</div>
+			<div class="player__current-box">
+				<div class="player__current-label">Поточний рахунок</div>
+				<div class="player__current-score" id="current1">0</div>
+			</div>
+		</div>
+		<button class="btn btn__new">Нова гра</button>
+        <button class="btn btn__roll">Крутити куб</button>
+        <button class="btn btn__hold">Додати рахунок</button>
+		<div class="modal">
+			<h1>Гра "КУБ"</h1>
+			<p>Натискайте на кнопку "крутити" та отримуйте бали на поточному рахунку.</p>
+			<p>Поточний рахунок обнулюється при:</p> 
+			<ul>
+				<li>випаданні на кубі "1";</li>
+				<li>накопиченні на поточному рахунку суми кратної 10.</li>
+			</ul>
+			<p>Для збереження накопичених балів та додавання їх до загального рахунку 
+				<br>треба натиснути на "Додати рахунок".</p> 
+			<p>Гра триває до досягнення одним з гравців 100 балів на загальному рахунку.</p>
+			<button class="modal__btn">Грати</button>
+		</div>
+	</div>
+	<script src="script.js"></script>
+</body>
+</html>
