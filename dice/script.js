@@ -1,258 +1,325 @@
+/* ---------------------------- begin viewCtrl ----------------------------- */
+	var viewCtrl = (function() {
 
-(function() {
-var btnNew  = document.getElementsByClassName("btn__new")[0],
-	btnHold = document.getElementsByClassName("btn__hold")[0],
-	btnRoll = document.getElementsByClassName("btn__roll")[0],
-	cube    = document.getElementById("cube"),
-	playerScore0 = document.getElementById("score0"),
-	playerScore1 = document.getElementById("score1"),
-	playerCurrent0 = document.getElementById("current0"),
-	playerCurrent1 = document.getElementById("current1"),
-	activePlayer0  = document.getElementsByClassName("player__name")[0],
-	activePlayer1  = document.getElementsByClassName("player__name")[1],
-	activecurrent0 = document.getElementsByClassName("player__current-box")[0],
-	activecurrent1 = document.getElementsByClassName("player__current-box")[1],
-
-    score0 = 0,
-	score1 = 0,
-	activePlayer = 0,
-	min     = 1,
-	max     = 24, //24
-	dice 	= 0,
-	current	= 0,
-	newGame = false,
-	degreeStart = 0;
-
-	viewShackeInit ();
-
-	btnRoll.addEventListener("click", diceRoll);
-	// cube.addEventListener("click", diceRoll);
-	btnNew.addEventListener("click", init);
-	btnHold.addEventListener("click", addScore);
-	document.getElementsByClassName("modal__btn")[0].addEventListener("click", hideModal);
-
-	cube.addEventListener("transitionend", enableBtn);
-
-function hideModal() {
-	document.getElementsByClassName("modal")[0].style.display = "none";
-}
-
-function viewShackeInit () {
-	if (!activePlayer0.classList.contains("shake")){
-		activePlayer0.classList.add("shake");
-	}   
-
-	if (activePlayer1.classList.contains("shake")){
-		activePlayer1.classList.remove("shake");
-	}
-}
-
-function init () {
-
-	disableBtn();
-
-    score0  = 0;
-	score1  = 0;
-	current	= 0;
-	activePlayer = 0;
-	newGame = true;
-
-	playerScore0.textContent = score0;
-	playerScore1.textContent = score1;
-
-	playerCurrent0.textContent = "0";
-	playerCurrent1.textContent = "0";
-
-	if (degreeStart == 0) {degreeStart = 360} else {degreeStart = 0}
-	cube.style.webkitTransform = 'rotateX('+ degreeStart +'deg) rotateY('+ degreeStart +'deg)';
-	cube.style.transform = 'rotateX('+ degreeStart +'deg) rotateY('+ degreeStart +'deg)';
-
-	if (!activePlayer0.classList.contains("player__name--active")) {
-		activePlayer0.classList.add("player__name--active");
-		activecurrent0.classList.add("player__current-box--active");
-	}
-
-	if (activePlayer1.classList.contains("player__name--active")) {
-		activePlayer1.classList.remove("player__name--active");
-		activecurrent0.classList.remove("player__current-box--active");
-	}
-
-	if (activePlayer1.classList.contains("winner")) {
-		activePlayer1.classList.remove("winner");
-		activePlayer1.textContent = "Гравець 2";
-	}
-	if (activePlayer0.classList.contains("winner")) {
-		activePlayer0.classList.remove("winner");
-		activePlayer0.textContent = "Гравець 1";
-	}
-
-	removeCurrentAnimate()
-
-	viewShackeInit ();
-}
-
-function addScore() {
-	if (activePlayer == 1) {
-		score1 += current;
-		current = 0;
-		viewScore(score0, score1);
-		disableCurrent();
-		if (score1 >= 100) {
-			winner(activePlayer);
-			return activePlayer;
+		var DOMstr = {
+			modalBtn: ".modal__btn",
+			modalWindow: document.getElementsByClassName("modal")[0],
+			btnNew: ".btn__new",
+			btnHold: ".btn__hold",
+			btnRoll: ".btn__roll",
+			player: document.getElementsByClassName("player__name"),
+			score: document.getElementsByClassName("player__score"),
+			currentBox: document.getElementsByClassName("player__current-box"),
+			current: document.getElementsByClassName("player__current-score"),
+			cube: document.getElementById("cube")
 		}
-		viewChangeActive();	
-		activePlayer = 0;
-	} else {
-		score0 += current;
-		current = 0;
-		viewScore(score0, score1);
-		disableCurrent();		
-		if (score0 >= 100) {
-			winner(activePlayer);
-			return activePlayer;
+
+		return {
+
+			getDOMstr: function() {
+				return DOMstr;
+			},
+
+			hideModalWindow: function() {
+				DOMstr.modalWindow.style.display = "none";
+			},
+
+			enableBtn: function() {
+				for (var i = 0; i < arguments.length; i++) {
+					document.querySelector(arguments[i]).removeAttribute('disabled');	
+				};
+			},
+
+			disableBtn: function() {
+				for (var i = 0; i < arguments.length; i++) {
+					document.querySelector(arguments[i]).setAttribute('disabled', 'disabled');		
+				};
+			},
+
+			addPlayer: function(activePlayer) {				
+				DOMstr.player[activePlayer].classList.add("player__name--active");	
+				DOMstr.player[activePlayer].classList.add("shake");
+			},
+
+			removePlayerColor: function(activePlayer) {
+				DOMstr.player[activePlayer].classList.remove("player__name--active");	
+			},
+
+			// addPlayerAnimate: function(activePlayer) {
+			// 	DOMstr.player[activePlayer].classList.add("shake");	
+			// },
+
+			removePlayerAnimate: function() {
+				DOMstr.player[0].classList.remove("shake");
+				DOMstr.player[1].classList.remove("shake");
+			},
+
+			addScore: function(activePlayer, score) {
+				DOMstr.score[activePlayer].textContent = score;
+			},
+
+			addCurrentBoxShadow: function(activePlayer) {
+				DOMstr.currentBox[activePlayer].classList.add("player__current-box--active");
+			},
+
+			removeCurrentBoxShadow: function(activePlayer) {
+				DOMstr.currentBox[activePlayer].classList.remove("player__current-box--active");
+			},
+
+			// addCurrentAnimate: function(activePlayer) {
+			// 	DOMstr.current[activePlayer].classList.add("bounce");
+			// },
+
+			removeCurrentAnimate: function() {
+				DOMstr.current[0].classList.remove("bounce");
+				DOMstr.current[1].classList.remove("bounce");			
+			},
+
+			addCurrent: function(activePlayer, current, animate) {
+				DOMstr.current[activePlayer].textContent = current;
+				if (animate) {
+					DOMstr.current[activePlayer].classList.add("bounce");				
+				}
+			},
+
+			rotateCube: function(xRand, yRand) {
+
+				this.disableBtn(DOMstr.btnNew, DOMstr.btnHold, DOMstr.btnRoll);
+
+				cube.style.webkitTransform = 'rotateX('+ xRand +'deg) rotateY('+ yRand +'deg)';
+				cube.style.transform = 'rotateX('+ xRand +'deg) rotateY('+ yRand +'deg)';
+			},
+
+			winner: function(activePlayer) {
+				DOMstr.player[activePlayer].textContent = "Переможець!";
+				DOMstr.player[activePlayer].classList.add("winner");	
+				this.disableBtn(DOMstr.btnHold, DOMstr.btnRoll);
+			},
+
+			removeWinner: function() {
+				DOMstr.player[0].textContent = "Гравець 1";
+				DOMstr.player[1].textContent = "Гравець 2";
+				DOMstr.player[0].classList.remove("winner");	
+				DOMstr.player[1].classList.remove("winner");	
+			}
+		} 
+
+	})();
+/* ----------------------------- end viewCtrl ------------------------------ */
+
+/* ---------------------------- begin modelCtrl ---------------------------- */
+	var modelCtrl = (function(view) {
+
+		var data = {
+				dice: 0, 
+				current: 0, 
+				activePlayer: 0,
+				score: [0,0],
+				xRand: 0,
+    			yRand: 0,
+    			oldxRand: 0,
+    			oldyRand: 0,
+    			newGame: false
+			};
+
+	    function getRand() {
+
+			var  min   = 1,
+			     max   = 24, //24			    
+			     y = [1,2,6,5],
+			     x = {
+			  		1: [1,4,6,3],
+			  		2: [2,4,5,3],
+			  		6: [6,4,1,3],
+			  		5: [5,4,2,3]
+			  	};
+
+			data.xRand = getRandom(max, min);
+			data.yRand = getRandom(max, min);
+
+			if ((data.xRand === data.oldxRand) || (data.yRand === data.oldyRand)) {
+				data.xRand += 360;
+				data.yRand += 360;
+			}
+
+    		data.dice = x[y[getDecimal(data.yRand/360) * 4]][getDecimal(data.xRand/360) * 4];
+
+    		data.oldxRand = data.xRand;
+    		data.oldyRand = data.yRand;
+
+			function getRandom(max, min) {
+			  return (Math.floor(Math.random() * (max-min)) + min) * 90;
+			}
+
+			function getDecimal(num) {
+			  var str = "" + num;
+			  var zeroPos = str.indexOf(".");
+			  if (zeroPos == -1) return 0;
+			  str = str.slice(zeroPos);
+			  return +str;
+			}
+		};
+
+		function changePlayer() {
+
+			data.current = 0;
+			view.addCurrent(data.activePlayer, 0, false);
+			view.removePlayerColor(data.activePlayer);
+			view.removeCurrentBoxShadow(data.activePlayer);
+
+			if (data.activePlayer === 1) {data.activePlayer = 0} else {data.activePlayer = 1}
+
+			view.addPlayer(data.activePlayer);
+			view.addCurrentBoxShadow(data.activePlayer);
+
+		};
+
+		return {
+
+			getData: function() {
+				return data;
+			},
+
+			setData: function(name, val) {
+				return data[name] = val;
+			},
+
+			init: function() {
+
+				data.dice = 0;
+				data.activePlayer = 0;
+				data.current	= 0;
+				data.score = [0,0];
+				data.xRand = 0;
+				data.yRand = 0;
+				data.oldxRand = 0;
+    			data.oldyRand = 0;
+
+				view.removePlayerColor(1);
+				view.removeWinner();
+				view.addPlayer(0);
+				view.addScore(0,0);
+				view.addScore(1,0);
+				view.removeCurrentBoxShadow(1);
+				view.addCurrentBoxShadow(0);
+				view.addCurrent(0,0,false);
+				view.addCurrent(1,0,false);
+
+				if (data.newGame === true) {
+
+					if (data.xRand === 0) {
+						data.xRand = 360; 
+					} else {
+						data.xRand = 0;
+					}
+
+					view.rotateCube(data.xRand, data.xRand);
+				}
+			},	
+
+			roll: function() {
+				data.newGame = false;
+				getRand();
+				view.rotateCube(data.xRand, data.yRand);
+			},
+
+			calculateCurrent: function() {
+	
+				if ( (data.dice === 1) || (((data.current + data.dice) % 10) === 0) ) {
+					changePlayer();
+				} else {
+					data.current += data.dice;
+				}
+			},
+
+			addScore: function() {
+				
+				if (data.current > 0) {
+					data.score[data.activePlayer] += data.current;
+					view.addScore(data.activePlayer, data.score[data.activePlayer]);
+
+					if (data.score[data.activePlayer] >= 100) {
+						view.winner(data.activePlayer);
+						return;
+					}
+
+					changePlayer();
+				}			
+			} 
+
 		}
-		viewChangeActive();
-		activePlayer = 1;
-	}
+	}(viewCtrl));
+/* ----------------------------- end modelCtrl ----------------------------- */
 
-}
+/* -------------------------- begin controller ------------------------- */
+	var controller = (function(view, model) {
 
-function winner() {
-	if (activePlayer == 1) {
-		activePlayer1.textContent = "Переможець!";
-		activePlayer1.classList.add("winner");
-	} else {
-		activePlayer0.textContent = "Переможець!";
-		activePlayer0.classList.add("winner");
-	}
-	btnHold.setAttribute('disabled', 'disabled');
-	btnRoll.setAttribute('disabled', 'disabled');
-}
+		var DOM = view.getDOMstr(),
+			getData = model.getData();
+			setData = model.setData;
 
-function enableBtn() {
 
-	if (newGame == false) {calculateCurrent();}
+		return {
 
-	console.log(newGame); 
+			setEventListeners: function() {
 
-	newGame = false;
+				document.querySelector(DOM.modalBtn).addEventListener("click", view.hideModalWindow);
 
-	btnRoll.removeAttribute('disabled');
-	btnNew.removeAttribute('disabled');
-	btnHold.removeAttribute('disabled');
-}
+				document.querySelector(DOM.btnNew).addEventListener("click", function() {
+					setData('newGame', true);
+					model.init();
+				});	
 
-function disableBtn() {
-	
-	btnRoll.setAttribute('disabled', 'disabled');
-	btnNew.setAttribute('disabled', 'disabled');
-	btnHold.setAttribute('disabled', 'disabled');
+				document.querySelector(DOM.btnRoll).addEventListener("click", function() {
 
-	removeCurrentAnimate()
+					model.roll();
 
-}
+					view.removePlayerAnimate();
+					view.removeCurrentAnimate();
+					
+				});
 
-function disableCurrent() {
-	playerCurrent0.textContent = "0";
-	playerCurrent1.textContent = "0";
-	current	= 0;
-}
+				document.querySelector(DOM.btnHold).addEventListener("click", model.addScore);
 
-function viewCurrent(a0, a1) {
-	playerCurrent0.textContent = a0;
-	playerCurrent1.textContent = a1;
+				DOM.cube.addEventListener("transitionend", function(){
 
-	addCurrentAnimate();
-}
+					if (!getData.newGame) {
+						model.calculateCurrent();
+						view.addCurrent(getData.activePlayer, getData.current, true);
+					}
 
-function addCurrentAnimate() {
+					view.enableBtn(DOM.btnNew, DOM.btnHold, DOM.btnRoll);
 
-	if (activePlayer == 1) {
-		activecurrent1.classList.add("bounce");
-	}  
+				});
+				
+			}
+		}; 
 
-	if (activePlayer == 0) {
-		activecurrent0.classList.add("bounce");
-	}  
+	})(viewCtrl, modelCtrl);
+/* --------------------------- end controller -------------------------- */
 
-}
 
-function removeCurrentAnimate() {
+/* --------------------- anonymous initialize function ----------------- */
+	(function(model,ctrl) {
 
-	if (activecurrent0.classList.contains("bounce")) {
-		activecurrent0.classList.remove("bounce")
-	}
+		var app = {
 
-	if (activecurrent1.classList.contains("bounce")) {
-		activecurrent1.classList.remove("bounce")
-	}
+			init: function() {
+				this.main();
+				this.event();
+			},
 
-}
+			main: function() {
+				model.init();
+			},
 
-function viewScore(a0, a1) {
-	playerScore0.textContent = a0;
-	playerScore1.textContent = a1;
-}
+			event: function() {	
+				ctrl.setEventListeners();
+			}
 
-function viewChangeActive() {
-	activePlayer0.classList.toggle("player__name--active");
-	activecurrent0.classList.toggle("player__current-box--active");
-	activePlayer0.classList.toggle("shake");
-	activePlayer1.classList.toggle("player__name--active");
-	activecurrent1.classList.toggle("player__current-box--active");
-	activePlayer1.classList.toggle("shake");
-}
+		};
 
-function calculateCurrent() {
-	
-	if ( (dice == 1) || ((current + dice) % 10) == 0) {
-		if (activePlayer == 1) {activePlayer = 0} else {activePlayer = 1}
-		disableCurrent();
-		viewChangeActive();
-	} else {
-		current += dice;
-		if (activePlayer == 1) {
-			viewCurrent(0, current);
-		} else {
-			viewCurrent(current, 0);
-		}	
-	}
-}
+		app.init();
 
-function diceRoll() {
-
-	disableBtn();
-
-	var  xRand = getRandom(max, min);
-	var  yRand = getRandom(max, min);
-	var  y = [1,2,6,5];
-	var  x = {
-	  		1: [1,4,6,3],
-	  		2: [2,4,5,3],
-	  		6: [6,4,1,3],
-	  		5: [5,4,2,3]
-	  	};
-
-	dice = x[y[getDecimal(yRand/360) * 4]][getDecimal(xRand/360) * 4];
-
-	//console.log("xRand -> " + xRand/90, "yRand -> " + yRand/90, "dice -> " + dice);
-	// console.log("getDecimal(yRand/360) * 4 -> " + getDecimal(yRand/360) * 4);
-
-	cube.style.webkitTransform = 'rotateX('+xRand+'deg) rotateY('+yRand+'deg)';
-	cube.style.transform = 'rotateX('+xRand+'deg) rotateY('+yRand+'deg)';
-
-	function getRandom(max, min) {
-	  return (Math.floor(Math.random() * (max-min)) + min) * 90;
-	}
-
-	function getDecimal(num) {
-	  var str = "" + num;
-	  var zeroPos = str.indexOf(".");
-	  if (zeroPos == -1) return 0;
-	  str = str.slice(zeroPos);
-	  return +str;
-	}
-
-}
-})();
+	}(modelCtrl, controller)); 
+/* --------------------- anonymous initialize function ----------------- */
