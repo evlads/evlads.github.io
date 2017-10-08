@@ -1,0 +1,13 @@
+{
+    "name": "Pink",
+    "icons": [
+        {
+            "src": "../static/img/favicons/android-chrome-144x144.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#d22856",
+    "background_color": "#d22856",
+    "display": "standalone"
+}
