@@ -1,0 +1,28 @@
+.page-footer
+
+  .container
+      display flex
+      justify-content space-between
+      align-items center
+      padding-right 10px
+      padding-left 10px
+
+      min-height 200px
+      
+
+
+@import 'blocks/social.styl'
+@import 'blocks/copyright.styl'
+
+@media (max-width md - 1)
+  .page-footer
+    .container
+      flex-direction column
+      justify-content space-around
+      min-height 150px
+
+@media (min-width md) and (max-width lg - 1)
+
+  .page-footer
+    .container
+      min-height 127px

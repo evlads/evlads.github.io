@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>English writing skills training</title>
+    <link href="engl/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+</head>
+<body>
+
+    <div id="root">
+
+        <label for="voices" class="voice-label">Select a voice (Google UK Male)</label>
+        <select id="voices" v-model="selectedVoice" v-on:change="changedVoice">
+
+            <option v-for="(voice, index) in voices" :data-lang="voice.lang" :value="index">
+                {{ voice.name }} ({{ voice.lang }})
+            </option>
+        </select>
+        
+        
+        <div v-if="onVoice">
+            <div class="select-section">
+                <span class="select-section__title">Select Section -> </span>
+                <select id="database" v-model="selectedSection" v-on:change="changedSection">
+                    
+                    <option v-for="(section, index) in DBtitles" :value="index">
+                        {{ section }}
+                    </option>
+
+                </select>
+            </div>
+
+            <h2 class="write-title">Word (setence) to write is:</h2>
+            <p class="write-message">"{{currObjKey}}"</p>
+            <div v-if="showTip" class="select-section__tip">{{currEngWord}}</div>
+            <input 
+                class="inputText"
+                type="text" 
+                v-model="message" 
+                v-on:keydown="isTrue"
+                v-on:keydown.13="isEnter"
+                v-bind:class="[{ trueClass: isTrue()}, 'errorClass']" autofocus>
+            <div class="input_buttons">
+                <button v-on:click="sayWord" class="input-button">Say word</button>
+                <button v-on:click="showTip=!showTip" class="input-button">Show tip</button>
+                <button v-on:click="nextWord" class="input-button">Next word</button>
+            </div>
+            <label>
+                <input 
+                    type="checkbox" 
+                    v-model="sayCheckbox"
+                    v-on:change="sayBefore">
+
+                    Say before typing
+
+            </label>
+
+            <audio ref="errSound" src="engl/tink.wav" preload></audio>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="engl/data.js"></script>
+    <script>
+
+       
+
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                message: "",
+                result: true,
+                showTip: false,
+                sayCheckbox: false,
+                selectedSection: 0,
+                selectedVoice: 0,
+                synth: window.speechSynthesis,
+                mySpeech: new window.SpeechSynthesisUtterance(),
+                objKeys: [],
+                DB: {},
+                DBtitles: [],
+                objKeyIterator: 0,
+                voices: [], 
+                onVoice: false,
+                words : {},
+                currObjKey: '1'
+            },
+            computed: {
+                currEngWord: function() {
+                    return this.words[this.currObjKey];
+                }
+            },
+            mounted () {
+
+                this.synth.onvoiceschanged = function(){
+                    vm.voices = vm.synth.getVoices();
+                };
+
+                this.DB = myDB;
+
+                let i = 0;
+                for (let key in this.DB) {
+                    this.DBtitles[i] = this.DB[key].title;
+                    i++;
+                }
+
+                this.setWords();
+
+            },
+            methods: {
+
+                isTrue: function() {
+                    let result = this.result = this.message === this.currEngWord.substr(0,this.message.length);
+                    
+                    if (result === false) { this.soundError(); }
+
+                    return result;
+                },                                
+
+                isComplete: function() {
+
+                    if (this.objKeys.length > this.objKeyIterator + 1 ) {
+                        this.objKeyIterator++; 
+                    } else { 
+                        this.objKeyIterator = 0; 
+                    }
+
+                    this.currObjKey = this.objKeys[this.objKeyIterator];
+
+                    this.clearInput();
+                },
+
+                isEnter: function() {
+
+                    if (this.currEngWord === this.message){                      
+
+                        if (!this.sayCheckbox){
+                            this.mySpeech.text = this.message;
+                            this.speech(this.mySpeech);
+                            this.isComplete();
+                        } else {
+                            this.isComplete();
+                            this.mySpeech.text = this.currEngWord;
+                            this.speech(this.mySpeech);
+                        }
+                    }
+                },
+
+                setWords: function() {
+
+                    this.words = this.DB[this.selectedSection].data;
+
+                    this.objKeys.length = 0;
+                    this.objKeyIterator = 0; 
+
+                    for (let key in this.words) {
+                        this.objKeys[this.objKeys.length] = key;
+                    };
+
+                    this.currObjKey = this.objKeys[0]; 
+
+                },
+
+                changedSection: function() {
+                    this.setWords();
+                    this.clearInput();
+                },
+
+                sayWord: function() {
+                    this.mySpeech.text = this.currEngWord;
+                    this.speech(this.mySpeech);
+                },
+
+                nextWord: function() {
+                    this.isComplete();
+                },
+
+                changedVoice: function() {
+                    let that = this;
+                    this.mySpeech.voice = this.voices[this.selectedVoice];
+                    this.mySpeech.text = "Ok. Let's start!";
+                    this.speech(this.mySpeech);
+                    setTimeout(function(){
+                        that.onVoice = true;
+                    }, 2000);
+                },
+
+                sayBefore: function() {
+                    if (this.sayCheckbox) {
+                        this.mySpeech.text = this.currEngWord;
+                        this.speech(this.mySpeech);
+                    }
+                },
+
+                speech: function(msg) {
+                    speechSynthesis.speak(msg);
+                },
+
+                clearInput() {
+                    this.message = "";
+                },
+
+                soundError: function() {
+                    this.$refs.errSound.play();
+                }
+            }
+        });      
+
+    </script>
+</body>
+</html>

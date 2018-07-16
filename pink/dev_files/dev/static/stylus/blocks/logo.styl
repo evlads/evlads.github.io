@@ -1,0 +1,31 @@
+.logo
+  &:active
+      opacity .3
+      
+  &__link    
+    display block
+    cursor pointer
+    
+  &__img
+    display block
+
+// Mediaqueries
+      
+@media (max-width md - 1)
+    
+  .logo--sm
+    font-size 32px
+    color #fff
+    
+  .logo__img
+    display none    
+    
+@media (min-width md) and (max-width lg - 1)
+
+  .logo--sm
+    display none  
+
+@media (min-width lg)
+  
+  .logo--sm
+    display none

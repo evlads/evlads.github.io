@@ -1,5 +1,7 @@
 # evlads.github.io
 
 view projects 
-* [Pink](https://evlads.github.io/pink/)
-* [Dice](https://evlads.github.io/dice/)
+* [Active components](https://evlads.github.io/jQComponents/) - Bulma + jQuary
+* [Pink](https://evlads.github.io/pink/) - Pug / Stylus / SVG / Gulp
+* [Dice](https://evlads.github.io/dice/) - Pure JS (MVC)
+* [English Training](https://evlads.github.io/englishTraining/) - Vue + Web Speech API

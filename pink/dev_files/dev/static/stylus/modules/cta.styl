@@ -1,0 +1,89 @@
+.cta
+  background-color #f2f2f2
+  min-height 410px
+  .container
+    display flex
+    padding-left 10px
+    padding-right 10px
+   
+  &__clock
+    position relative
+    &-icon
+      width 300px
+      height 346px
+
+    &-number
+      display block
+      position absolute
+      font-size 120px
+      font-weight bold_fnt
+      color #d22856
+      top 100px
+      left 85px
+  
+  &__content
+    align-self center
+    padding-left 65px
+    
+  &__title
+    font-size 30px
+    font-weight bold_fnt
+    line-height 1
+    margin-top 30px
+    margin-bottom 30px
+    
+  &__descr
+    font-size 18px
+    color #283645
+    margin-left auto
+    margin-right auto
+    line-height 1.7
+    margin-bottom 40px
+    
+  &__link
+    font-size 18px
+    color #d22856
+    border-bottom 1px solid #d22856
+    &:hover
+      color #283645
+      border-bottom 1px solid #283645
+    &:active
+      opacity .3
+      border-bottom 1px solid transparent
+
+@media (max-width md - 1)
+  
+  .cta
+    display none
+    
+@media (min-width md) and (max-width lg - 1)
+
+  .cta
+    background-color #fff
+    padding-top 55px
+    &__clock
+      
+      &-icon
+        width 270px
+        height 300px
+        
+      &-number
+        font-size 105px
+        top 80px
+        left 75px
+    
+    &__content
+      padding-left 45px
+    
+    &__title
+      line-height 36px
+
+    &__descr
+      font-size 14px
+      margin-bottom 20px
+      
+    &__link
+      font-size 14px
+
+
+    

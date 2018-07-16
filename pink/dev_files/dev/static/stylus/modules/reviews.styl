@@ -1,0 +1,135 @@
+.reviews
+  padding-top 75px
+  padding-bottom 70px
+  
+  &__list
+    no-list()
+  
+  &__item
+    margin 0  auto
+    width 700px
+    text-align center
+  
+  &__item-icon
+    width 77px
+    height 63px
+    margin-bottom 30px
+    
+  &__blockquote
+    font-size 18px
+    color #283645
+    margin-left auto
+    margin-right auto
+    line-height 1.7
+    margin-bottom 30px
+  
+  &__cite-name
+    display block
+    font-size 24px
+    font-weight bold_fnt 
+    
+  &__cite-descr
+    display block
+    font-size 18px
+    color #283645
+  
+.reviews
+  
+  // owl-nav
+  .owl-prev,
+  .owl-next
+    position absolute
+    top 47%
+    font-size 0
+    height 40px
+    width 60px
+    &:active
+      transform scale(1.1)
+    
+  .owl-prev
+    left 0 
+    background url(../img/general/back.svg) center no-repeat
+    background-size cover
+
+  .owl-next
+    right 0
+    background url(../img/general/next.svg) center no-repeat
+    background-size cover
+
+@media (max-width md - 1)
+  .reviews
+      padding-top 70px //40px
+      &__item
+        display flex
+        flex-direction column
+        
+      &__item-icon
+        display none
+       &__item
+        width 100%
+      
+
+
+      &__blockquote
+        font-size 14px
+        line-height 2.1
+        margin-bottom 20px
+      &__cite-name
+        font-size 18px
+        order -1
+
+      &__cite-descr
+        display none
+        
+      
+      .owl-dots
+        text-align center
+        font-size 0
+        
+        .owl-dot 
+          display inline-block
+          span
+            display block
+            width 10px
+            height 10px
+            margin 5px 7px
+            background #bec2c7 
+            border 1px solid #fff 
+            border-radius 30px  
+          &.active
+            span
+              border 3px solid #283645
+              background transparent
+
+@media (min-width md) and (max-width lg - 1)
+  
+  .reviews
+    padding-top 70px //  10px
+    &__item-icon
+      display none
+     &__item
+      width 100%
+    &__cite-name
+      font-size 20px
+    &__cite-descr
+      font-size 14px
+      margin-bottom 35px
+    
+    .owl-dots
+      text-align center
+      font-size 0
+      
+      .owl-dot 
+        display inline-block
+        span
+          display block
+          width 10px
+          height 10px
+          margin 5px 7px
+          background #bec2c7 
+          border 1px solid #fff 
+          border-radius 30px  
+        &.active
+          span
+            border 3px solid #283645
+            background transparent

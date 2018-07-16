@@ -1,0 +1,104 @@
+.features
+  position relative
+  background-color #f2f2f2
+  padding-bottom 45px
+  
+  &__polygon
+    position absolute
+    top 0
+    left 0
+    width 100vw
+    height 8vw
+    
+  &__list
+    no-list()
+    display flex
+    justify-content space-around
+    padding-left 10px
+    padding-right 10px
+    
+  &__item
+    z-index 2
+    
+  &__img--md
+    display none
+    
+  &__title
+    width 225p
+    font-size 30px
+    font-weight bold_fnt
+    line-height 1
+    margin 50px auto 25px
+    
+  &__descr
+    width 240px
+    font-size 18px
+    color #283645
+    margin-left auto
+    margin-right auto
+    line-height 1.7
+
+@media (max-width md - 1)
+  
+  .features
+    padding-bottom 0
+    .container 
+      flex-direction column
+      > picture
+          order 2        
+          margin 0 auto
+            
+    &__list
+      margin-top 50px    
+           
+    &__item
+      text-align center
+    
+    &__img
+      display none
+    
+    &__img--md
+      margin-top 30px
+      width 155px
+
+    
+@media (min-width md) and (max-width lg - 1)
+  
+  .features         
+    padding-bottom 0 
+    &__list
+      margin-left 30px
+    &__img
+      display none
+
+@media (max-width lg - 1)
+  
+  .features
+    .container 
+      display flex
+      padding-top 20px
+      > picture        
+          z-index 2
+          display flex
+          align-items flex-end
+    
+    &__list
+      flex-direction column
+      justify-content center
+    
+    &__item
+      text-align left
+    
+    &__img--md
+      z-index 3
+      display block
+    
+    &__title
+      width 100%
+      margin 0
+      margin-bottom 16px
+      font-size 18px
+      
+    &__descr
+      width 100%
+      font-size 14px

@@ -1,0 +1,51 @@
+section.information#information
+
+  div.information__title-wrapper
+    div.container
+
+      p.information__title Устали от серости мегаполиса? 
+      p.information__title 
+        | Нам есть, что вам 
+        br 
+        | предложить!
+
+  div.features
+
+    svg.features__polygon(xmlns='http://www.w3.org/2000/svg', viewbox='0 0 100 100', preserveaspectratio='none')
+      polygon(fill='#fff', points='0,0 0,75 100,0')
+
+    div.container   
+      picture
+        - var item = '../static/img/content/phone-screen'
+        source(media="(max-width: 1199px)" srcset=item + ".png, " + item + "@2x.png 2x, " + item + "@3x.png 3x")
+        source(media="(min-width: 1200px)"  srcset="../static/img/general/none.png")
+                
+        img.features__img--md(src=item + ".png")
+
+      ul.features__list
+        li.features__item
+          picture
+            - var item = '../static/img/content/phonea'
+            source(media="(max-width: 1199px)"  srcset="../static/img/general/none.png")
+            source(media="(min-width: 1200px)" srcset=item + ".png, " + item + "@2x.png 2x, " + item + "@3x.png 3x")
+            img.features__img(src=item + ".png")
+          h4.features__title Поднимает настроение
+          p.features__descr Приложение позволит вам победить осеннюю хандру и деперессию буквально в несколько кликов!
+
+        li.features__item
+          picture
+            - var item = '../static/img/content/phoneb'
+            source(media="(max-width: 1199px)"  srcset="../static/img/general/none.png")
+            source(media="(min-width: 1200px)" srcset=item + ".png, " + item + "@2x.png 2x, " + item + "@3x.png 3x")
+            img.features__img(src=item + ".png")
+          h4.features__title Меняет мир вокруг
+          p.features__descr Сделайте снимок и украсьте его смайликом или текстовой подписью, чтобы усилить эффект
+        
+        li.features__item
+          picture
+            - var item = '../static/img/content/phonec'
+            source(media="(max-width: 1199px)"  srcset="../static/img/general/none.png")
+            source(media="(max-width: 1199px)" srcset=itemMd + ".png, " + logo + "@2x.png 2x, " + logo + "@3x.png 3x")
+            img.features__img(src=item + ".png")
+          h4.features__title Заводит новых друзей
+          p.features__descr Ставьте лайки, комментируте, делитесь фотографиями с друзьями и заводите новых

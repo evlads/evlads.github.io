@@ -1,0 +1,29 @@
+.promo-picture
+  position absolute
+  bottom 0px
+
+  &__img
+    display block
+    // width 100%
+    // height auto
+  
+@media (max-width md - 1)
+  
+  .promo-picture
+    bottom -20px
+    &__img--lg,
+    &__img--md
+      display none
+
+@media (min-width md) and (max-width lg - 1)
+  
+  .promo-picture
+    &__img--lg,
+    &__img--sm
+      display none
+      
+@media (min-width lg)
+  .promo-picture
+     &__img--md,
+     &__img--sm
+       display none

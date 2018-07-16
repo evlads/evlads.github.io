@@ -1,0 +1,114 @@
+.slogan
+  align-self center
+  color #fff
+  width 320px
+  text-align center
+  padding-right 10px
+  padding-left 10px 
+  
+  &__title  
+    font-size 50px
+    font-weight light_fnt
+    text-align center
+    line-height 1.25
+  
+  &__picture
+    position absolute
+    bottom 0
+    right 0
+    
+  &__btn
+    margin-bottom 75px
+
+    display block
+    color #fff
+    font-size 21px
+    font-weight bold_fnt
+    line-height 1
+    border 3px solid #fff
+    padding 15px 0px
+    border-radius 55px
+    &:hover
+      background-color #fff
+      color #d22856
+    &:active
+      color rgba(210,40,86, .3)
+
+  &__OS
+    no-list()
+    margin-bottom 45px
+    
+    display flex
+    justify-content space-around
+    
+  &__OS-icon
+    width 45px
+    height 45px
+  
+  &__remark
+    font-size 18px
+    font-weight light_fnt
+    
+// Mediaqueries
+
+@media (max-width md - 1)
+  
+  .slogan
+    width 100%
+
+    &__title 
+      font-size 24px
+      width 100%
+      
+    &__sm-wrapper
+      position absolute
+      bottom -270px 
+      right 0
+      display flex
+      flex-direction column
+      align-items center
+      z-index 1
+      width 100%
+      background-color #1d2631
+      
+    &__btn
+      margin-top 28px
+      margin-bottom 30px
+    
+    &__OS
+      margin-bottom 0
+      
+    &__remark
+      margin-top 23px
+      margin-bottom 30px
+      
+    &__btn,
+    &__OS,
+    &__remark
+      width 300px
+      background-color transparent
+         
+@media (min-width md) and (max-width lg - 1)
+  
+  .slogan
+
+    &__title       
+      font-size 40px
+
+@media (min-width lg)
+  
+  .slogan
+
+    &__title 
+      margin-bottom 30px
+      line-height 1.25
+    
+    &__btn
+      margin-bottom 55px
+      font-size 18px
+    
+    &__OS
+      margin-bottom 30px
+    
+
+      

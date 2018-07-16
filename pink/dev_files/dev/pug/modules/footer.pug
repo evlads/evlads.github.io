@@ -1,0 +1,34 @@
+footer.page-footer
+  div.container
+
+    div.logo
+      a.logo__link
+        picture
+          - var logo = '../static/img/general/footer-logo'
+          source(media="(max-width: 699px)"  srcset="../static/img/general/none.png")
+          source(media="(max-width: 1199px)" srcset=logo + "-md.png, " + logo + "-md@2x.png 2x, " + logo + "-md@3x.png 3x")
+          source(media="(min-width: 1200px)" srcset=logo + "-lg.png, " + logo + "-lg@2x.png 2x, " + logo + "-lg@3x.png 3x")
+          img.logo__img(src=logo + "-lg.png")
+
+    div.page-footer__social.social
+      ul.social__list
+        li.social__item
+          a.social__link
+            +icon('twitter-logo','social__link-icon')
+        li.social__item
+          a.social__link
+            +icon('facebok-logo','social__link-icon')
+        li.social__item
+          a.social__link
+            +icon('youtube-logo','social__link-icon')
+
+    div.page-footer__developer.copyright
+      p.copyright__text Website by 
+        |
+        a.copyright__link(href="http://glukhanko.ru/")
+          svg.copyright__icon
+            use(xlink:href="#glukhanko-icon") Anton Glukhanko
+        | for
+        a.copyright__link(href="https://htmlacademy.ru/")
+          svg.copyright__icon
+            use(xlink:href="#htmlacademy-icon") HTML Academy

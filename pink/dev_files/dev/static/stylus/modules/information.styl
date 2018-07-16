@@ -1,0 +1,38 @@
+.information
+  text-align center
+  border-top 1px solid transparent
+      
+  &__title-wrapper
+    margin-top 64px
+    margin-bottom 76px
+    
+  &__title
+    font-size 50px
+    font-weight light_fnt
+    color #283645
+    margin 0
+    line-height 1.2
+    
+@import 'blocks/features.styl'
+
+@media (max-width md - 1)
+
+  .information  
+    margin-top 290px
+    &__title-wrapper
+      margin-top 70px
+      margin-bottom 20px
+    
+    &__title
+      font-size 24px
+      &:nth-child(1)
+        margin-bottom 30px
+    
+@media (min-width md) and (max-width lg - 1)
+
+  .information  
+    &__title-wrapper
+      margin-top 70px
+      margin-bottom 40px
+    &__title
+      font-size 40px

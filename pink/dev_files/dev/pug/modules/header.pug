@@ -1,0 +1,55 @@
+header.page-header
+
+  h1.visually-hidden Pink - фотография с улыбкой
+
+  div.page-header__top
+    div.container
+
+        div.page-header__toggle-menu-wrapper
+
+          div.logo
+            a.logo__link(href="javascript:void(0);" title="Домашняя страница Pink") 
+              span.logo--sm PINK
+              picture
+                - var logo = '../static/img/general/header-logo'
+                source(media="(max-width: 699px)"  srcset="../static/img/general/none.png")
+                source(media="(max-width: 1199px)" srcset=logo + "-md.png, " + logo + "-md@2x.png 2x, " + logo + "-md@3x.png 3x")
+                source(media="(min-width: 1200px)" srcset=logo + "-lg.png, " + logo + "-lg@2x.png 2x, " + logo + "-lg@3x.png 3x")
+                img.logo__img(src=logo + "-lg.png")
+            
+          a.toggle(title="Открыть меню") 
+            span
+            span
+            span
+        
+        nav.main-nav
+          ul.main-nav__list
+            li.main-nav__item
+              a.main-nav__link(href="#slogan") Информация
+            li.main-nav__item
+              a.main-nav__link(href="#information") Возможности
+            li.main-nav__item
+              a.main-nav__link(href="#reviews") Отзывы
+            li.main-nav__item 
+              a.main-nav__link(href="#price") Стоимость
+
+  div.page-header__middle#slogan
+    div.container
+
+      div.slogan
+        h3.slogan__title Взгляните на жизнь иначе!
+        div.slogan__sm-wrapper
+          a.slogan__btn(href="javascript:void(0);") Скачать приложение
+          ul.slogan__OS
+            each val in ["apple-logo", "android-logo", "windows-logo"]
+              li.slogan__OS-item
+                +icon(val,'slogan__OS-icon')
+          p.slogan__remark Доступно для iPhone, iPad, Android, Windows phone, Mac OS, Windows 8
+      
+      div.promo-picture
+        picture
+          - var logo = '../static/img/content/iphone-6'
+          source(media="(max-width: 699px)"  srcset=logo + "-sm.png, " + logo + "-sm@2x.png 2x, " + logo + "-sm@3x.png 3x")
+          source(media="(max-width: 1199px)" srcset=logo + "-md.png, " + logo + "-md@2x.png 2x, " + logo + "-md@3x.png 3x")
+          source(media="(min-width: 1200px)" srcset=logo + "-lg.png, " + logo + "-lg@2x.png 2x, " + logo + "-lg@3x.png 3x")
+          img.promo-picture__img(src=logo + "-lg.png")

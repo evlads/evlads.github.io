@@ -1,0 +1,152 @@
+.price
+  position relative
+  background-color #f2f2f2
+  padding-top 150px
+  padding-bottom 100px
+  
+  &__polygon
+    position absolute
+    top 0
+    left 0
+    width 100vw
+    height 8vw
+    
+  &__list
+    no-list()
+    display flex
+    justify-content space-around
+    padding-left 10px
+    padding-right 10px
+    
+  &__item
+    width 300px
+    text-align center
+    overflow hidden
+    
+  &__item-head
+    position relative
+    background-color #283645
+    text-transform uppercase
+    padding-top 25px
+    padding-bottom 25px
+    line-height 1
+    
+  &__item-best
+    display block
+    position absolute
+    color #fff
+    background-color #d22856
+    padding 6px 40px
+    text-transform uppercase
+    transform rotate(-45deg)
+    top 12px
+    left -30px    
+  
+  &__item-name
+    margin-bottom 15px
+    display block
+    color #fff
+    font-size 18px
+    font-weight bold_fnt
+    
+  &__item-amount
+    font-size 24px
+    color rgba(255,255,255, .6)
+    font-weight light_fnt
+    
+  &__item-body
+    color #283645
+    font-size 18px
+    span
+      position relative
+      display block
+      text-align left
+      padding 20px 60px 20px 25px
+      background-color #fff
+      border 1px solid #e5e5e5
+  &__item-yes:after
+    content ''
+    display block
+    position absolute
+    top 50%
+    transform: translateY(-50%)
+    right 10%
+    height 30px
+    width 30px
+    background url(../img/general/checked.svg) center no-repeat
+    background-size cover
+  &__item-no:after
+    content ''
+    display block
+    position absolute
+    top 50%
+    transform: translateY(-50%)
+    right 10%
+    height 25px
+    width 25px
+    background url(../img/general/close.svg) center no-repeat
+    background-size cover
+
+// @media (max-width md - 1)
+// (min-width md) and
+@media (max-width md - 1)
+  .price
+    padding-bottom 45px
+    &__item
+      width 230px
+    &__item-body
+      span
+        padding 20px 60px 20px 25px
+    &__item-yes:after
+      right 10%
+    &__item-no:after
+      right 10%
+  
+  .owl-dots
+    margin-top 40px
+    text-align center
+    font-size 0
+    
+    .owl-dot 
+      display inline-block
+      span
+        display block
+        width 10px
+        height 10px
+        margin 5px 7px
+        background #bec2c7 
+        border 1px solid #fff 
+        border-radius 30px  
+      &.active
+        span
+          border 3px solid #283645
+          background transparent
+        
+@media (max-width lg - 1)
+
+  .price
+    padding-top 100px
+    padding-bottom 70px
+    &__item
+      width 200px
+    
+    &__item-head
+      padding-top 20px
+      padding-bottom 20px
+    
+    &__item-name
+      font-size 16px
+    
+    &__item-amount
+      font-size 18px
+    
+    &__item-body
+      font-size 14px
+      span
+        padding 20px 60px 20px 15px
+    
+    &__item-yes:after
+      right 7%
+
+    &__item-no:after
+      right 7%

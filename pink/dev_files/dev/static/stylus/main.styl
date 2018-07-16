@@ -1,0 +1,57 @@
+@import 'fonts.styl'
+@import 'vars.styl'
+@import 'libs.styl'
+@import 'mixins.styl'
+
+body
+  font-family main-font
+  font-weight regular_fnt
+  font-size 16px
+  min-width 320px
+  position relative
+  line-height 1.6
+
+*
+  outline none   
+a
+	text-decoration none
+
+*, *:before, *:after
+  box-sizing border-box
+  
+.visually-hidden
+  display none
+
+.container
+  margin-left auto
+  margin-right auto
+
+// Общие стили
+@import 'common_styles.styl'
+
+// МОДУЛИ
+// Стили шапки
+@import 'modules/header.styl'
+
+// Стили контента
+@import 'modules/information.styl'
+@import 'modules/cta.styl'
+@import 'modules/reviews.styl'
+@import 'modules/price.styl'
+@import 'modules/contacts.styl'
+
+// Стили футера
+@import 'modules/footer.styl'
+
+// Стили меню
+@import 'modules/menu.styl'
+
+
+// СТРАНИЦЫ
+// Стили главной страницы
+@import 'pages/index.styl'
+
+
+// ПРОЧЕЕ
+// Стили медиазапросов
+@import 'media.styl'

@@ -1,0 +1,138 @@
+.page-header
+  position relative
+  display flex
+  flex-direction column
+  background #283646 url(../img/general/header-bg.jpg) center no-repeat
+  background-size cover
+  min-height 855px
+    
+  &__top
+    position absolute
+    width 100%
+    background-color rgba(0, 0, 0, .3)   
+    
+    z-index 10
+    
+    .container
+      display flex
+      align-items center
+      border-bottom 1px solid transparent
+
+      min-height 110px
+  
+    &--fixed
+        position fixed
+        background-color rgba(0, 0, 0, .7)
+        .container
+          min-height 66px
+          transition .5s
+    
+  &__middle
+    display flex
+    flex-grow 1
+    .container
+      display flex  
+      
+  &__toggle-menu-wrapper
+    display flex
+    justify-content space-between
+    align-items center
+    
+    padding-right 10px
+    padding-left 10px
+
+  .logo
+    margin-right 185px
+     
+  .slogan
+    margin-top 60px
+    
+    z-index 5
+    
+@import 'blocks/logo.styl'
+ 
+@import 'blocks/main-nav.styl'     
+        
+@import 'blocks/toggle.styl'
+
+@import 'blocks/slogan.styl'
+
+@import 'blocks/promo-picture.styl'
+
+
+  
+// Retina displays
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)
+  .page-header
+    background #283646 url(../img/general/header-bg@2x.jpg) center no-repeat
+    
+@media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 350dpi)
+  .page-header
+    background #283646 url(../img/general/header-bg@3x.jpg) center no-repeat
+     
+// Mediaqueries
+
+@media (max-width md - 1)
+  .page-header 
+    min-height 456px 
+    &__top
+      .container
+        justify-content space-between
+        min-height 66px
+    
+    &__middle
+      .container
+        display block
+        
+    &__toggle-menu-wrapper
+      width 100%
+      padding-right 10px
+      padding-left 10px   
+    
+    .logo
+      margin-right 0
+        
+    .slogan
+      margin-top 86px
+      
+@media (min-width md) and (max-width lg - 1)
+  
+  .page-header 
+    min-height 730px 
+      
+    &__top
+      .container
+        justify-content space-between
+      
+    &__toggle-menu-wrapper
+      width 100%
+      padding-right 10px
+      padding-left 10px   
+    
+    .logo
+      margin-right 0
+      
+    .slogan
+      margin-top 75px
+
+// Mediaqueries for JS toggle
+
+@media (max-width md - 1)
+
+  .js-page-header__top--open-toggle
+    .page-header__toggle-menu-wrapper
+      flex-basis 66px
+
+@media (max-width lg - 1)
+
+  .js-page-header__top--open-toggle
+    background-color transparent
+    
+    .container
+      flex-direction column
+      
+    .page-header__toggle-menu-wrapper
+      flex-basis 110px
+      background-color #283645
+      border-bottom 1px solid #000         

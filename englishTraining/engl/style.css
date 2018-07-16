@@ -1,0 +1,64 @@
+#root {
+  text-align: center;
+  margin-top: 50px;
+}
+.voice-label {
+  display: block;
+  font-size: 24px;
+  font-weight: bold;
+}
+#database, .select-section__title {
+  font-size: 24px;
+}
+
+#voices {
+  display: block;
+  margin: 20px auto;
+  font-size: 24px;
+}
+.errorClass {
+   background-color: #f8d7da;
+}
+.select-section__tip {
+  text-align: left;
+  font-size: 24px;
+  color: #004085;
+  background-color: #cce5ff;
+  border-color: #b8daff;
+  padding-left: 10px;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  margin: 20px auto;
+  width: 500px;
+}
+.trueClass {
+  background-color: #d4edda;
+}
+.write-title {
+  margin: 20px;
+
+}
+.write-message {
+  display: inline-block;
+  min-width: 20px;
+  text-align: center;
+  color:  green;
+  font-size: 24px;
+}
+.input_buttons {
+  margin: 20px auto;
+}
+.input-button{
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.inputText {
+  position: relative;
+  margin: 20px auto;
+  display: block;
+  min-width: 500px;
+  font-size: 24px;
+  padding-left: 10px;
+}
